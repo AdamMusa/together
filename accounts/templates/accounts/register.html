@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h4>Create a new account</h4>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %} 
+                {% for input in form %}
+                <div class="form-group">
+                    <label for="">{{input.label_tag}}</label>
+                    <input type="{{input.field.widget.input_type}}" name="{{input.name}}" class="form-control
+                     {% if input.errors %}
+                        form-invalid
+                        {% endif %}" {% if input.field.widget.is_required %} required {% endif %} value="{{input.value|default:''}}">
+                </div>
+                <div class="invalid-feedback">{{input.errors}}</div>
+                {% endfor %}
+                <button class="btn btn-outline-success btn-block btn-sm">Create
+                    account</button>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+{% endblock content %}

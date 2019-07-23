@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<br>
+{% for profile in profile %}
+<div class="card" style="width: 18rem;">
+    <img src="{{profile.image}}" class="rounded-circle " alt="..." style="height: 50;">
+    <div class="card-body">
+      <h3 class="card-title">Nom:{{ user.username }}</h3>
+      <p class="card-text">Email:{{ user.email }}</p>
+    </div>
+  </div>
+  {% endfor %}
+{% endblock content %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %} 
+{% load static %}
+{% block content %}
+<div class="container">
+    <h4 class="display-4">Ici s'affichera la liste de tous nos posts</h4>
+    {% if messages %}
+        {% for message in messages %}
+           <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong> {{message}} !</strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% for post in posts %}
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                {% for profile in profile %}
+                <div class="card-body">
+                    <img src="{{profile.image.url}}" alt="..." class="img-thumbnail rounded-circle">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.content|truncatewords:10}}</p>
+                </div>
+
+                <div class="card-body">
+                    <a href="{% url 'post:post_detail' pk=post.pk %}" class="card-link"> Details</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

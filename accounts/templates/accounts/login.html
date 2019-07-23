@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 mt-4">
+            <h4 class="display-for">Login</h4>
+            <form method="post">
+                {% csrf_token %} {% for input in form %}
+                <div class="form-group">
+                    <input type="{{input.field.widget.input_type}}" name="{{input.name}}" class="form-control {% if input.errors %} is_invalid {% endif %}">
+                </div>
+                {% endfor %}
+                <input type="hidden" name="next" value="{{next}}">
+                <button class="btn btn-outline-success btn-block btn-sm">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
